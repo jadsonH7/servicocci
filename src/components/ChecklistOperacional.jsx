@@ -1,4 +1,4 @@
-import './styles/styleChecklist.css';
+import './styles/styleCheckList.css';
 export default function ChecklistOperacional({ checklist, onChange }) {
   const itens = [
     { key: 'equipeCompleta', label: 'Equipe de Serviço' },

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Registro de Serviço Operacional – Bombeiro de Aeródromo
 
 Sistema web desenvolvido para o **registro e controle do serviço operacional** de bombeiros de aeródromo, com foco em **turnos de 24 horas (08:00 às 08:00)**.
@@ -50,6 +49,3 @@ backend/  → API e regras de negócio
 docs/     → Documentação técnica do sistema
 scripts/  → Scripts de automação e integração
 ```
-=======
-# lider-de-resgate
->>>>>>> 62edded266bf4b3bd7088157b5f4b410eb7aa5ec

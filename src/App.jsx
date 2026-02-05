@@ -192,10 +192,7 @@ export default function App() {
 
           {
             !equipeCompleta ? (
-              <div>
                 <ButtomSave type='button' texto='Preencha os campos' disabled={true} />
-                <p className="app-warning">Preencha todos os membros da equipe antes de salvar.</p>
-              </div>
             ) : (
               <ButtomSave type='submit' texto='Salvar Registro' />
             )

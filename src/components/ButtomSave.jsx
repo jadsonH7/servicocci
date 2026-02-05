@@ -1,12 +1,11 @@
 import './styles/styleButtom.css';
-export default function ButtomSave({ onClick, texto = 'Salvar Registro', disabled = false }) {
+export default function ButtomSave({ type = "button", onClick, texto = 'Salvar Registro' }) {
   return (
     <section className="app-buttom">
-      <button 
-        type="submit" 
+      <button
         className="btn-saved"
+        type={type}
         onClick={onClick}
-        disabled={disabled}
       >
         {texto}
       </button>

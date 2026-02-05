@@ -190,10 +190,19 @@ export default function App() {
           onChange={handleOcorrenciasChange}
         />
 
-        <ButtomSave />
+          {
+            !equipeCompleta ? (
+              <div>
+                <ButtomSave type='button' texto='Preencha os campos' disabled={true} />
+                <p className="app-warning">Preencha todos os membros da equipe antes de salvar.</p>
+              </div>
+            ) : (
+              <ButtomSave type='submit' texto='Salvar Registro' />
+            )
+          }
       </form>
       <footer className="app-footer">
-        <p>Registro de Serviço Operacional - Bombeiro de Aeródromo Militar</p>
+        <p>Registro de Serviço Operacional - Lider de Resgate</p>
         <p>© 2026 - Célula de Contra Incêndio. Uso Interno do CCI.</p>
       </footer>
     </section>

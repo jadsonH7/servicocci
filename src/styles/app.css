@@ -250,8 +250,8 @@ textarea {
   border-color: var(--success) !important;
 }
 
-.message-error,
-.message-success,
+.app-error-message,
+.app-success-message,
 .message-info {
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
@@ -259,13 +259,13 @@ textarea {
   margin-bottom: 1rem;
 }
 
-.message-error {
+.app-error-message {
   background: #FEE2E2;
   color: var(--error);
   border-left: 4px solid var(--error);
 }
 
-.message-success {
+.app-success-message {
   background: #D1FAE5;
   color: var(--success);
   border-left: 4px solid var(--success);

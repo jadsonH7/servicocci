@@ -2,10 +2,10 @@ import './styles/styleCheckList.css';
 export default function ChecklistOperacional({ checklist, onChange }) {
   const itens = [
     { key: 'equipeCompleta', label: 'Equipe de Serviço' },
-    { key: 'faxinaAnterior', label: 'Faxina da equipe anterior' },
-    { key: 'abastecimentoViaturas', label: 'Abastecimento das viaturas' },
-    { key: 'conferenciaCCI', label: 'Conferência material CCI' },
-    { key: 'conferenciaCRS', label: 'Conferência material CRS' },
+    { key: 'faxinaAnterior', label: 'Faxina da Equipe anterior' },
+    { key: 'abastecimentoViaturas', label: 'Abastecimento das Viaturas' },
+    { key: 'conferenciaCCI', label: 'Conferência Material CCI' },
+    { key: 'conferenciaCRS', label: 'Conferência Material CRS' },
     { key: 'checkSirene', label: 'Check Sirene' },
   ];
 

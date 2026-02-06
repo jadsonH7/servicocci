@@ -13,16 +13,9 @@ import './styles/appMobile.css';
 import './styles/appDesktop.css';
 import { salvarRegistroNoDrive } from './services/api.js';
 export default function App() {
+  const [quartoHora, setQuartoHora] = useState({ 1: "", 2: "", 3: "", 4: "", 5: "", 6: "", });
+  const [status, setStatus] = useState({ loading: false, error: null, success: false });
   // Estado centralizado no componente pai
-  const [quartoHora, setQuartoHora] = useState({
-    1: "",
-    2: "",
-    3: "",
-    4: "",
-    5: "",
-    6: "",
-  });
-
   const [formData, setFormData] = useState({
     dataServico: "",
 
@@ -61,11 +54,12 @@ export default function App() {
       abastecimentoViaturas: false,
       conferenciaCCI: false,
       conferenciaCRS: false,
-      checkSirene: false,
+      checkSirene: false
     },
 
     ocorrencias: ''
   });
+
   // Handlers para comunicação com os componentes filhos
   const handleEquipeChange = (index, value) => {
     const newEquipe = [...formData.equipe];
@@ -106,6 +100,8 @@ export default function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setStatus({ loading: true, success: false, error: null });
+
     const payload = {
       dataServico: formData.dataServico,
       equipe: formData.equipe,
@@ -113,15 +109,25 @@ export default function App() {
       faxinaCopa: formData.faxinaCopa,
       faxinaGeral: formData.faxinaGeral,
       checklistOperacional: formData.checklistOperacional,
-      checkSirene: formData.checklistOperacional.checkSirene,
       ocorrencias: formData.ocorrencias
     };
 
     try {
-      await salvarRegistroNoDrive(payload);
-      alert("Registro salvo com sucesso no Google Drive!");
+      const response = await salvarRegistroNoDrive(payload);
+
+      setStatus({
+        loading: false,
+        success: true,
+        error: null,
+        pdfUrl: response.pdfUrl
+      });
+
     } catch (error) {
-      alert(`Erro ao salvar registro: ${error.message}`);
+      setStatus({
+        loading: false,
+        success: false,
+        error: `Erro ao salvar registro: ${error.message}`
+      });
     }
   };
 
@@ -191,13 +197,28 @@ export default function App() {
           onChange={handleOcorrenciasChange}
         />
 
-          {
-            !equipeCompleta ? (
-                <ButtomSave type='button' texto='Preencha os campos' disabled={true} />
-            ) : (
-              <ButtomSave type='submit' texto='Salvar Registro' />
-            )
-          }
+        {status.success && (
+          <div className="app-success-message">
+            <p>✅ Registro salvo com sucesso no Google Drive!</p>
+            <a href={status.pdfUrl} target="_blank" rel="noopener noreferrer">
+              📄 Abrir relatório em PDF
+            </a>
+          </div>
+        )}
+
+        {status.error && (
+          <div className="app-error-message">
+            ❌ {status.error}
+          </div>
+        )}
+
+        {
+          !equipeCompleta ? (
+            <ButtomSave type='button' texto='Preencha os campos' disabled={true} />
+          ) : (
+            <ButtomSave type='submit' texto='Salvar Registro' />
+          )
+        }
       </form>
       <footer className="app-footer">
         <p>Registro de Serviço Operacional - Lider de Resgate</p>

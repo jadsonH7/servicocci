@@ -1,7 +1,7 @@
 export function salvarRegistroNoDrive(payload) {
   const form = document.createElement("form");
   form.method = "POST";
-  form.action = "https://script.google.com/macros/s/AKfycbzXwXQSzMS90Bx2Xp_CiROWGcyhAKPY5Z7hhkbs8d61mu89re1UzzBPTxUHAQGqEwLp/exec";
+  form.action = "https://script.google.com/macros/s/AKfycbwvzfrhD7o5hmM4yxvwvuI3-Q5TJfHhwx8gwY1dbF3yQYdZEqDxvhQxwW9F-k73HfLkSg/exec";
   form.target = "hidden_iframe";
 
   const input = document.createElement("input");

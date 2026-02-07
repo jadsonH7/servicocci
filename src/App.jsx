@@ -97,27 +97,30 @@ export default function App() {
     setFormData({ ...formData, ocorrencias: value });
   };
 
+  const equipeCompleta = formData.equipe.every(
+    (membro) => membro.nome && membro.nome.trim() !== ""
+  );
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setStatus({ loading: true, success: false, error: null });
 
     const payload = {
-  dataServico: formData.dataServico,
-  equipe: formData.equipe,
-  quartoHora,
-  faxinaCopa: formData.faxinaCopa,
-  faxinaGeral: formData.faxinaGeral,
-  checklistOperacional: {
-    ...formData.checklistOperacional,
-    equipeCompleta: equipeCompleta
-  },
-  ocorrencias: formData.ocorrencias
-};
+      dataServico: formData.dataServico,
+      equipe: formData.equipe,
+      quartoHora,
+      faxinaCopa: formData.faxinaCopa,
+      faxinaGeral: formData.faxinaGeral,
+      checklistOperacional: {
+        ...formData.checklistOperacional,
+        equipeCompleta: equipeCompleta
+      },
+      ocorrencias: formData.ocorrencias
+    };
 
     try {
-      await salvarRegistroNoDrive(payload);
-
+      await salvarRegistroNoDrive(payload)
       setStatus({
         loading: false,
         success: true,
@@ -132,10 +135,6 @@ export default function App() {
       });
     }
   };
-
-  const equipeCompleta = formData.equipe.every(
-    (membro) => membro.nome && membro.nome.trim() !== ""
-  );
 
   return (
     <section className="app-container">
@@ -202,9 +201,6 @@ export default function App() {
         {status.success && (
           <div className="app-success-message">
             <p>✅ Registro salvo com sucesso no Google Drive!</p>
-            <a href={status.pdfUrl} target="_blank" rel="noopener noreferrer">
-              📄 Abrir relatório em PDF
-            </a>
           </div>
         )}
 
@@ -222,6 +218,7 @@ export default function App() {
           )
         }
       </form>
+      <iframe name="hidden_iframe" style={{ width: 0, height: 0, border: "none" }} />
       <footer className="app-footer">
         <p>Registro de Serviço Operacional - Lider de Resgate</p>
         <p>© 2026 - Célula de Contra Incêndio. Uso Interno do CCI.</p>
